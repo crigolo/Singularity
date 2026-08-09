@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://ng5lik3cjfra"]
+
+[ext_resource type="Script" uid="uid://b0ihba3d8bn4n" path="res://area_2d.gd" id="1_u0hmu"]
+[ext_resource type="Texture2D" uid="uid://ctltcn46crb4f" path="res://bullet/pixil-frame-0 (8).png" id="5_njl78"]
+[ext_resource type="Texture2D" uid="uid://dumutwmouvaek" path="res://bullet/pixil-frame-0 (9).png" id="6_k4j6d"]
+[ext_resource type="Texture2D" uid="uid://dwpdoaugjr1se" path="res://bullet/pixil-frame-0 (12).png" id="8_bm6qi"]
+[ext_resource type="Texture2D" uid="uid://b1fc5b3ss6660" path="res://bullet/pixil-frame-0 (14).png" id="10_pyiik"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fsvvc"]
+radius = 1.0
+height = 22.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b5xfj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_njl78")
+}, {
+"duration": 90.0,
+"texture": ExtResource("6_k4j6d")
+}],
+"loop": 0,
+"name": &"hyper",
+"speed": 60.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_bm6qi")
+}, {
+"duration": 300.0,
+"texture": ExtResource("10_pyiik")
+}],
+"loop": 0,
+"name": &"regular",
+"speed": 60.0
+}]
+
+[node name="Area2D" type="Area2D" unique_id=991010009]
+disable_mode = 2
+collision_mask = 2
+script = ExtResource("1_u0hmu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=867359391]
+shape = SubResource("CapsuleShape2D_fsvvc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=928850683]
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_b5xfj")
+animation = &"regular"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
